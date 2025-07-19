@@ -1,13 +1,11 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class BulletFly : MonoBehaviour
+public class BulletFly : ParentFly
 {
-    [SerializeField] protected int flySpeed = 1;
-    [SerializeField] protected Vector3 direction = Vector3.right;
-
-    private void Update()
+    protected override void ResetValue()
     {
-        transform.parent.Translate(this.direction* this.flySpeed* Time.deltaTime);
+        base.ResetValue();
+        this.moveSpeed = 7f;
     }
 }

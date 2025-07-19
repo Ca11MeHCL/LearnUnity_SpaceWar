@@ -9,6 +9,7 @@ public class HCLMonoBehaviour : MonoBehaviour
     protected virtual void Reset()
     {
         this.LoadComponents();
+        this.ResetValue();
     }
     protected virtual void Awake()
     {
@@ -18,5 +19,9 @@ public class HCLMonoBehaviour : MonoBehaviour
     {
         //OverWrite
     }
-    
+    protected virtual void ResetValue()
+    {
+        //OverWrite
+    }
+
 }
