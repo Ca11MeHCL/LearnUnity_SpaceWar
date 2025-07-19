@@ -4,12 +4,14 @@ using UnityEngine;
 
 public abstract class Spawner : HCLMonoBehaviour
 {
-
+    [SerializeField] protected Transform holder;
     [SerializeField] protected List<Transform> prefabs;
+    [SerializeField] protected List<Transform> poolObjs;
 
     protected override void LoadComponents()
     {
         this.LoadPrefabs();
+        this.LoadHolder();
     }
     protected virtual void LoadPrefabs()
     {
@@ -23,6 +25,11 @@ public abstract class Spawner : HCLMonoBehaviour
         this.HidePrefabs();
 
         Debug.Log(transform.name + ": LoadPrefabs() ",gameObject);
+    }
+    protected virtual void LoadHolder()
+    {
+        if(this.holder != null) return;
+        this.holder = transform.Find("Holder");
     }
 
     protected virtual void HidePrefabs()
@@ -41,19 +48,40 @@ public abstract class Spawner : HCLMonoBehaviour
             return null;
         }
 
-        Transform newPrefabs = Instantiate(prefab, spawnPos, rotation);
+        Transform newPrefabs = this.GetObjectFromPool(prefab);
+        newPrefabs.SetPositionAndRotation(spawnPos, rotation);
+
+        newPrefabs.parent = this.holder;
         return newPrefabs;
+    }
+
+    protected virtual Transform GetObjectFromPool(Transform prefab)
+    {
+        foreach(Transform poolObj in this.poolObjs)
+        {
+            if(poolObj.name== prefab.name)
+            {
+                this.poolObjs.Remove(poolObj);
+                return poolObj;
+            }
+        }
+
+        Transform newPrefab= Instantiate(prefab);
+        newPrefab.name = prefab.name;
+        return newPrefab;
     }
     public virtual Transform GetPrefabByName(string prefabName)
     {
         foreach(Transform prefab in this.prefabs)
         {
-            if (prefab.name == prefabName)
-            {
-                return prefab;
-            }
+            if (prefab.name == prefabName) return prefab;
         }
         return null;
+    }
+    public virtual void Despawn(Transform obj)
+    {
+        this.poolObjs.Add(obj);
+        obj.gameObject.SetActive(false);
     }
 
 }
