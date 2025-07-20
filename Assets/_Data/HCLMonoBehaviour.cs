@@ -23,5 +23,13 @@ public class HCLMonoBehaviour : MonoBehaviour
     {
         //OverWrite
     }
+    protected virtual void OnEnable()
+    {
+        //For override
+    }
+    protected virtual void OnDisable()
+    {
+        //For override
+    }
 
 }

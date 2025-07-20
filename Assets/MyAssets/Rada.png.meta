@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 39c5e763ca66db043843fcd5a1eb738b
+guid: 6510c61e9fb5b114784b92c7f954d0dc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1872763632839425887
-    second: SpaceRock_0
+      213: 1097472626987576250
+    second: Rada_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SpaceRock_0
+      name: Rada_0
       rect:
         serializedVersion: 2
-        x: 100
-        y: 133
-        width: 300
-        height: 234
+        x: 5
+        y: 1
+        width: 491
+        height: 491
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f5ff9ab0a946df910800000000000000
-      internalID: 1872763632839425887
+      spriteID: abb2f422a810b3f00800000000000000
+      internalID: 1097472626987576250
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      SpaceRock_0: 1872763632839425887
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
