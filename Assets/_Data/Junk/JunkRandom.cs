@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class JunkRandom : HCLMonoBehaviour
 {
-    [SerializeField] protected JunkCtrl junkCtrl;
+    [SerializeField] protected JunkSpawnerCtrl junkCtrl;
     
     protected override void LoadComponents()
     {
@@ -12,7 +12,7 @@ public class JunkRandom : HCLMonoBehaviour
     protected virtual void LoadJunkCtrl()
     {
         if(this.junkCtrl != null) return;
-        this.junkCtrl = GetComponent<JunkCtrl>();
+        this.junkCtrl = GetComponent<JunkSpawnerCtrl>();
     }
 
     protected override void Start()

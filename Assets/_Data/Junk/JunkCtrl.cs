@@ -2,25 +2,16 @@ using UnityEngine;
 
 public class JunkCtrl : HCLMonoBehaviour
 {
-    [SerializeField] protected JunkSpawner junkSpawner;
-    public JunkSpawner JunkSpawner { get => junkSpawner; }
-    [SerializeField] protected JunkSpawnPoint spawnPoints;
-    public JunkSpawnPoint SpawnPoints { get => spawnPoints; }
+    [SerializeField] protected Transform model;
+    public Transform Model { get => model; }
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadJunkSpawner();
-        this.LoadSpawnPoints();
-
+        this.LoadModel();
     }
-    protected virtual void LoadJunkSpawner()
+    protected virtual void LoadModel()
     {
-        if (this.junkSpawner != null) return;
-        this.junkSpawner = GetComponent<JunkSpawner>();
-    }
-    protected virtual void LoadSpawnPoints()
-    {
-        if (this.spawnPoints != null) return;
-        this.spawnPoints = FindObjectOfType<JunkSpawnPoint>();
+        if (Model != null) return;
+        this.model = transform.Find("Model");
     }
 }

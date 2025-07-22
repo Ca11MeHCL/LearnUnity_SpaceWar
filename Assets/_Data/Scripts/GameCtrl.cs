@@ -23,6 +23,6 @@ public class GameCtrl : HCLMonoBehaviour
     protected virtual void LoadCamera()
     {
         if (this.mainCamera != null) return;
-        this.mainCamera = GameCtrl.FindObjectOfType<Camera>();
+        this.mainCamera = GameCtrl.FindAnyObjectByType<Camera>();
     }
 }

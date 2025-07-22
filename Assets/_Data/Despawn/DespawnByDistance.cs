@@ -5,7 +5,7 @@ public class DespawnByDistance : Despawn
     [SerializeField] protected float disLimit = 70f;
     [SerializeField] protected float distance = 0f;
     [SerializeField] protected Camera mainCam;
-    protected virtual void FixedUpdate()
+    protected override void FixedUpdate()
     {
         this.Despawning();
     }
@@ -15,17 +15,18 @@ public class DespawnByDistance : Despawn
     }
     protected virtual void LoadCamera()
     {
+        
         if (this.mainCam != null) return;
-        this.mainCam = FindObjectOfType<Camera>();
+        this.mainCam = FindAnyObjectByType<Camera>();
     }
-    protected virtual void Despawning()
+    protected override void Despawning()
     {
         if (!this.CanDespawn()) return;
         {
             this.DespawnObject();
         }
     }
-    protected virtual void DespawnObject()
+    protected override void DespawnObject()
     {
         Destroy(this.transform.parent.gameObject);
     }
