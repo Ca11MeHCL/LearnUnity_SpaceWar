@@ -4,16 +4,19 @@ public class JunkFly : ParentFly
 {
     [SerializeField] protected float minCamPos = -16f;
     [SerializeField] protected float maxCamPos = 16f;
+
     protected override void ResetValue()
     {
         base.ResetValue();
-        this.moveSpeed = 1f;
+        this.moveSpeed = 0.5f;
     }
+
     protected override void OnEnable()
     {
         base.OnEnable();
         this.GetFlyDirection();
     }
+
     protected virtual void GetFlyDirection()
     {
         Vector3 camPos = GameCtrl.Instance.MainCamera.transform.position;

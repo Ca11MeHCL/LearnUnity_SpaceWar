@@ -5,22 +5,26 @@ using UnityEngine;
 public abstract class SpawnPoints : HCLMonoBehaviour
 {
     [SerializeField] protected List<Transform> points;
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadPoints();  
+        this.LoadPoints();
     }
+
     protected virtual void LoadPoints()
     {
-        if (points == null) return;
+        if (this.points.Count > 0) return;
         foreach (Transform point in transform)
         {
-            points.Add(point);
+            this.points.Add(point);
         }
+        Debug.Log(transform.name + ": LoadPoints", gameObject);
     }
-    public virtual Transform GetRamdomPoint()
+
+    public virtual Transform GetRandom()
     {
-        int rand= Random.Range(0, this.points.Count);
+        int rand = Random.Range(0, this.points.Count);
         return this.points[rand];
     }
 }

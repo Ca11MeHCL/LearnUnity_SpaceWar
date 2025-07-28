@@ -7,17 +7,16 @@ public  abstract class Despawn : HCLMonoBehaviour
     {
         this.Despawning();
     }
-    
+
     protected virtual void Despawning()
     {
         if (!this.CanDespawn()) return;
-        {
-            this.DespawnObject();
-        }
+        this.DespawnObject();
     }
-    protected virtual void DespawnObject()
+    public virtual void DespawnObject()
     {
-        Destroy(this.transform.parent.gameObject);
+        Destroy(transform.parent.gameObject);
     }
+
     protected abstract bool CanDespawn();
 }

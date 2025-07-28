@@ -4,7 +4,12 @@ using UnityEngine;
 
 public abstract class Spawner : HCLMonoBehaviour
 {
+    [Header("Spawner")]
     [SerializeField] protected Transform holder;
+
+    [SerializeField] protected int spawnedCount = 0;
+    public int SpawnedCount => spawnedCount;
+
     [SerializeField] protected List<Transform> prefabs;
     [SerializeField] protected List<Transform> poolObjs;
 
@@ -13,32 +18,37 @@ public abstract class Spawner : HCLMonoBehaviour
         this.LoadPrefabs();
         this.LoadHolder();
     }
+
+    protected virtual void LoadHolder()
+    {
+        if (this.holder != null) return;
+        this.holder = transform.Find("Holder");
+        Debug.Log(transform.name + ": LoadHodler", gameObject);
+    }
+
     protected virtual void LoadPrefabs()
     {
         if (this.prefabs.Count > 0) return;
 
         Transform prefabObj = transform.Find("Prefabs");
-        foreach (Transform Prefab in prefabObj)
+        foreach (Transform prefab in prefabObj)
         {
-            this.prefabs.Add(Prefab);
+            this.prefabs.Add(prefab);
         }
+
         this.HidePrefabs();
 
-        Debug.Log(transform.name + ": LoadPrefabs() ",gameObject);
-    }
-    protected virtual void LoadHolder()
-    {
-        if(this.holder != null) return;
-        this.holder = transform.Find("Holder");
+        Debug.Log(transform.name + ": LoadPrefabs", gameObject);
     }
 
     protected virtual void HidePrefabs()
     {
-        foreach (Transform Prefab in this.prefabs)
+        foreach (Transform prefab in this.prefabs)
         {
-            Prefab.gameObject.SetActive(false);
+            prefab.gameObject.SetActive(false);
         }
     }
+
     public virtual Transform Spawn(string prefabName, Vector3 spawnPos, Quaternion rotation)
     {
         Transform prefab = this.GetPrefabByName(prefabName);
@@ -48,40 +58,48 @@ public abstract class Spawner : HCLMonoBehaviour
             return null;
         }
 
-        Transform newPrefabs = this.GetObjectFromPool(prefab);
-        newPrefabs.SetPositionAndRotation(spawnPos, rotation);
+        Transform newPrefab = this.GetObjectFromPool(prefab);
+        newPrefab.SetPositionAndRotation(spawnPos, rotation);
 
-        newPrefabs.parent = this.holder;
-        return newPrefabs;
+        newPrefab.parent = this.holder;
+        this.spawnedCount++;
+        return newPrefab;
     }
 
     protected virtual Transform GetObjectFromPool(Transform prefab)
     {
-        foreach(Transform poolObj in this.poolObjs)
+        foreach (Transform poolObj in this.poolObjs)
         {
-            if(poolObj.name== prefab.name)
+            if (poolObj == null) continue;
+
+            if (poolObj.name == prefab.name)
             {
                 this.poolObjs.Remove(poolObj);
                 return poolObj;
             }
         }
 
-        Transform newPrefab= Instantiate(prefab);
+        Transform newPrefab = Instantiate(prefab);
         newPrefab.name = prefab.name;
         return newPrefab;
     }
-    public virtual Transform GetPrefabByName(string prefabName)
-    {
-        foreach(Transform prefab in this.prefabs)
-        {
-            if (prefab.name == prefabName) return prefab;
-        }
-        return null;
-    }
+
     public virtual void Despawn(Transform obj)
     {
         this.poolObjs.Add(obj);
         obj.gameObject.SetActive(false);
+        this.spawnedCount--;
     }
+
+    public virtual Transform GetPrefabByName(string prefabName)
+    {
+        foreach (Transform prefab in this.prefabs)
+        {
+            if (prefab.name == prefabName) return prefab;
+        }
+
+        return null;
+    }
+
 
 }
