@@ -6,6 +6,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 [RequireComponent(typeof(SphereCollider))]
 public class DamageReceiver : HCLMonoBehaviour
 {
+
     [Header("Damage Receiver")]
     [SerializeField] protected SphereCollider sphereCollider;
     [SerializeField] protected int hp = 1;
@@ -14,6 +15,12 @@ public class DamageReceiver : HCLMonoBehaviour
 
     protected override void OnEnable()
     {
+        this.Reborn();
+    }
+
+    protected override void ResetValue()
+    {
+        base.ResetValue();
         this.Reborn();
     }
 
@@ -28,10 +35,9 @@ public class DamageReceiver : HCLMonoBehaviour
         if (this.sphereCollider != null) return;
         this.sphereCollider = GetComponent<SphereCollider>();
         this.sphereCollider.isTrigger = true;
-        this.sphereCollider.radius = 0.8f;
-        Debug.Log(transform.name + ": LoadCollider", gameObject);
+        this.sphereCollider.radius = 0.2f;
+        Debug.LogWarning(transform.name + ": LoadCollider", gameObject);
     }
-
     public virtual void Reborn()
     {
         this.hp = this.hpMax;
