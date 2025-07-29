@@ -11,6 +11,7 @@ public class GameCtrl : HCLMonoBehaviour
     protected override void Awake()
     {
         base.Awake();
+        if (GameCtrl.instance != null) Debug.LogError("Only 1 GameManager allow to exist");
         GameCtrl.instance = this;
     }
 
@@ -24,5 +25,6 @@ public class GameCtrl : HCLMonoBehaviour
     {
         if (this.mainCamera != null) return;
         this.mainCamera = GameCtrl.FindAnyObjectByType<Camera>();
+        Debug.Log(transform.name + ": LoadCamera", gameObject);
     }
 }

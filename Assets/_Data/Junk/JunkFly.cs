@@ -1,9 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class JunkFly : ParentFly
 {
-    [SerializeField] protected float minCamPos = -16f;
-    [SerializeField] protected float maxCamPos = 16f;
+    [SerializeField] protected float minCamPos = -9f;
+    [SerializeField] protected float maxCamPos = 9f;
 
     protected override void ResetValue()
     {
@@ -14,7 +14,13 @@ public class JunkFly : ParentFly
     protected override void OnEnable()
     {
         base.OnEnable();
-        this.GetFlyDirection();
+       // this.GetFlyDirection();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        this.GetFlyDirection(); // GameCtrl đã đảm bảo được khởi tạo
     }
 
     protected virtual void GetFlyDirection()
