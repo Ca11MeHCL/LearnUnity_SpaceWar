@@ -4,7 +4,7 @@ using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 [RequireComponent(typeof(SphereCollider))]
-public class DamageReceiver : HCLMonoBehaviour
+public abstract class DamageReceiver : HCLMonoBehaviour
 {
 
     [Header("Damage Receiver")]
@@ -73,9 +73,6 @@ public class DamageReceiver : HCLMonoBehaviour
         this.OnDead();
     }
 
-    protected virtual void OnDead()
-    {
-        //For override
-    }
+    protected abstract void OnDead();
 
 }
