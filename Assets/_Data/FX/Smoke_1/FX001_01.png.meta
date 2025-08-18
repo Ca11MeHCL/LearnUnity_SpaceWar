@@ -133,12 +133,12 @@ TextureImporter:
       name: FX001_01_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 25
-        width: 3
-        height: 5
+        x: 10
+        y: 11
+        width: 12
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -147,6 +147,28 @@ TextureImporter:
       bones: []
       spriteID: edaa1aadb89ea9441a3171f9e56fa053
       internalID: -1943298826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FX001_01_1
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 27
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bc44320f7f7223418d23f38adb774fc
+      internalID: 1732440192
       vertices: []
       indices: 
       edges: []
@@ -166,6 +188,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       FX001_01_0: -1943298826
+      FX001_01_1: 1732440192
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
